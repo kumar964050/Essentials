@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  /* Light Theme (default) */
+  --color-background: #fdfdff; /* very light lavender-white */
+  --color-foreground: #1f1d2b; /* deep slate for text */
+
+  --color-card: #ffffff;
+  --color-card-foreground: #1f1d2b;
+
+  --color-primary: #7d5fff; /* pastel purple for CTAs */
+  --color-primary-hover: #6a4de0;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #fce38a; /* soft pastel yellow */
+  --color-secondary-foreground: #1f1d2b;
+
+  --color-accent: #57c5b6; /* mint green accent */
+  --color-accent-foreground: #ffffff;
+
+  --color-muted: #f5f3fa;
+  --color-muted-foreground: #6c6a80;
+
+  --color-destructive: #ff6b6b;
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #e6e2f2;
+  --color-input: #e6e2f2;
+  --color-ring: #7d5fff;
+
+  --background-image-gradient-hero: linear-gradient(135deg, #f3f0ff, #fdfdff);
+  --background-image-gradient-card: linear-gradient(145deg, #ffffff, #f5f3fa);
+
+  --shadow-soft: 0 4px 20px -4px rgba(31, 29, 43, 0.08);
+  --shadow-card: 0 2px 12px -2px rgba(31, 29, 43, 0.06);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --radius: 0.5rem;
+
+  --sidebar-background: #fafafa;
+  --sidebar-foreground: #3d3d41;
+  --sidebar-primary: #19191a;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #f3f3f6;
+  --sidebar-accent-foreground: #19191a;
+  --sidebar-border: #e6e9f0;
+  --sidebar-ring: #358efc;
+}
