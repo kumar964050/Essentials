@@ -32,7 +32,7 @@ export const CartSheet = ({ isOpen, onClose }: CartSheetProps) => {
               <div className="space-y-4">
                 {cartItems.map((item) => (
                   <div
-                    key={`${item.product.id}-${item.size}`}
+                    key={`${item.product._id}-${item.size}`}
                     className="flex items-center space-x-4 p-4 rounded-xl bg-muted/30"
                   >
                     <img
@@ -57,7 +57,7 @@ export const CartSheet = ({ isOpen, onClose }: CartSheetProps) => {
                         variant="outline"
                         onClick={() =>
                           updateQuantity(
-                            item.product.id,
+                            item.product._id,
                             item.size,
                             item.quantity - 1
                           )
@@ -73,7 +73,7 @@ export const CartSheet = ({ isOpen, onClose }: CartSheetProps) => {
                         variant="outline"
                         onClick={() =>
                           updateQuantity(
-                            item.product.id,
+                            item.product._id,
                             item.size,
                             item.quantity + 1
                           )
@@ -85,7 +85,9 @@ export const CartSheet = ({ isOpen, onClose }: CartSheetProps) => {
                     <Button
                       size="sm"
                       variant="ghost"
-                      onClick={() => removeFromCart(item.product.id, item.size)}
+                      onClick={() =>
+                        removeFromCart(item.product._id, item.size)
+                      }
                     >
                       <X className="h-4 w-4" />
                     </Button>

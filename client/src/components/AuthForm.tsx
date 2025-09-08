@@ -85,23 +85,27 @@ const SignInForm = ({ onSuccess }: AuthFormsProps) => {
           </div>
         </div>
         {otpHasSent && (
-          <div className="space-y-2">
-            <Label htmlFor="signin-phone">Phone Number</Label>
+          <div className="space-y-2 flex flex-col items-center">
+            <Label className="w-full" htmlFor="signin-phone">
+              Please Enter your OTP :
+            </Label>
 
-            <InputOTP
-              maxLength={6}
-              value={inputOTP}
-              onChange={(value) => setInputOTP(value)}
-            >
-              <InputOTPGroup>
-                <InputOTPSlot index={0} />
-                <InputOTPSlot index={1} />
-                <InputOTPSlot index={2} />
-                <InputOTPSlot index={3} />
-                <InputOTPSlot index={4} />
-                <InputOTPSlot index={5} />
-              </InputOTPGroup>
-            </InputOTP>
+            <div className="">
+              <InputOTP
+                maxLength={6}
+                value={inputOTP}
+                onChange={(value) => setInputOTP(value)}
+              >
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
+                </InputOTPGroup>
+              </InputOTP>
+            </div>
           </div>
         )}
 
@@ -220,8 +224,10 @@ const SignUpForm = ({ onSuccess }: AuthFormsProps) => {
         {/* otp */}
 
         {otpHasSent && (
-          <div className="space-y-2">
-            <Label htmlFor="signin-phone">Phone Number</Label>
+          <div className="space-y-2 flex flex-col items-center">
+            <Label className="w-full" htmlFor="signin-phone">
+              Please enter your OTP:
+            </Label>
 
             <InputOTP
               maxLength={6}

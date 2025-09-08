@@ -16,6 +16,8 @@ import Auth from "./pages/Auth";
 import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
+import OrderHistory from "./pages/OrderHistory";
+import OrderTracking from "./pages/OrderTracking";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
               <Route path="/pants" element={<ProductList />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/orders" element={<OrderHistory />} />
+              <Route path="/track/:id" element={<OrderTracking />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />

@@ -2,12 +2,14 @@ import { createContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import type { User, AuthState } from "../types";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType extends AuthState {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   handleLogin: (userData: User, token: string) => void;
+  handleLogout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -22,6 +24,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(true);
     Cookies.set("token", token);
     setUser(userData);
+    setIsLoading(false);
+  };
+
+  const handleLogout = () => {
+    setIsLoading(true);
+    Cookies.remove("token");
+    setUser(null);
     setIsLoading(false);
   };
 
@@ -53,6 +62,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     isAuthenticated: !!user,
     isLoading,
     handleLogin,
+    handleLogout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

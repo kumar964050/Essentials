@@ -1,4 +1,5 @@
-import { User, LogOut } from "lucide-react";
+import { User, LogOut, Package, Truck } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -12,7 +13,7 @@ import { Avatar, AvatarFallback } from "./ui/avatar";
 import { useAuth } from "../hooks/useAuth";
 
 export const UserMenu = () => {
-  const { user } = useAuth();
+  const { user, handleLogout } = useAuth();
 
   if (!user) return null;
 
@@ -33,7 +34,11 @@ export const UserMenu = () => {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 rounded-xl" align="end" forceMount>
+      <DropdownMenuContent
+        className="w-56 rounded-xl bg-background border-border"
+        align="end"
+        forceMount
+      >
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{user.name}</p>
@@ -43,12 +48,26 @@ export const UserMenu = () => {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <User className="mr-2 h-4 w-4" />
-          <span>Profile</span>
+        {/* <DropdownMenuItem asChild>
+          <Link to="/profile">
+            <User className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+          </Link>
+        </DropdownMenuItem> */}
+        <DropdownMenuItem asChild>
+          <Link to="/orders">
+            <Package className="mr-2 h-4 w-4" />
+            <span>Order History</span>
+          </Link>
         </DropdownMenuItem>
+        {/* <DropdownMenuItem asChild>
+          <Link to="/track">
+            <Truck className="mr-2 h-4 w-4" />
+            <span>Track Order</span>
+          </Link>
+        </DropdownMenuItem> */}
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => {}} className="text-destructive">
+        <DropdownMenuItem onClick={handleLogout} className="text-destructive">
           <LogOut className="mr-2 h-4 w-4" />
           <span>Sign out</span>
         </DropdownMenuItem>

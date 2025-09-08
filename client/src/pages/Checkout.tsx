@@ -92,7 +92,7 @@ const Checkout = () => {
         amount: data.amount, // amount from backend (in paise)
         currency: data.currency,
         order_id: data.id, // ✅ use "id" from backend, not "_id"
-        name: "NXT-Chat",
+        name: "Essentials",
         description: "Test Transaction",
         handler: function (response: any) {
           console.log("Payment Success", response);

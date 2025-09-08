@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
-import { products } from "../data/products";
 import { useCartContext } from "../contexts/CartContext";
+import type { Product } from "../types";
 
 const ProductDetail = () => {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams<{ id: string }>();
   const { addToCart } = useCartContext();
@@ -14,6 +14,7 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     if (!selectedSize) return;
+    if (!product) return;
     addToCart(product, selectedSize);
   };
 
@@ -33,9 +34,14 @@ const ProductDetail = () => {
     })();
   }, [id]);
 
+  if (!isLoading && !product) {
+    return <Navigate to="/not-found" replace={true} />;
+  }
+
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4">
+        {product === null && <div>its null</div>}
         {isLoading && <div>Loading...</div>}
         {!isLoading && (
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
