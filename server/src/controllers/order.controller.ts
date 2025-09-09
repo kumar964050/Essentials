@@ -1,17 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import CustomError from "../utils/CustomError";
 import User, { IUser } from "../models/user.model";
-import SMSService from "../services/smsService";
 import Razorpay from "razorpay";
 import Orders from "../models/order.model";
-
-const smsService = new SMSService();
 
 interface AuthRequest extends Request {
   user?: IUser | null;
 }
 
-// SignUp
+// creating a new order
 const createOrder = async (
   req: AuthRequest,
   res: Response,
@@ -39,5 +36,43 @@ const createOrder = async (
   const order = await instance.orders.create(options);
   res.json(order);
 };
+const getOrdersList = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.user) {
+    return next(new CustomError("UnAuthorization error", 401));
+  }
 
-export default { createOrder };
+  const orders = await Orders.find({ user: req.user._id }).populate(
+    "orderItems.product"
+  );
+
+  res.json({
+    status: "success",
+    message: "fetched orders list successfully",
+    orders,
+  });
+};
+const getOrderById = async (
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.user) {
+    return next(new CustomError("UnAuthorization error", 401));
+  }
+
+  const order = await Orders.findById(req.params.id).populate(
+    "orderItems.product"
+  );
+
+  res.json({
+    status: "success",
+    message: "fetched orders list successfully",
+    order,
+  });
+};
+
+export default { createOrder, getOrdersList, getOrderById };
